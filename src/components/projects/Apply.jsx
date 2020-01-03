@@ -20,18 +20,18 @@ import workStyle from "assets/jss/material-kit-react/views/landingPageSections/w
 class Apply extends Component {
   state = {
     companyName: "",
-    job: ""
+    job: "",
   };
   handleLoad = e => {
     this.setState({
       companyName: this.props.project.companyname,
-      job: this.props.project.job
+      job: this.props.project.job,
     });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+
     // this.props.intern(this.state);
     // this.props.history.push("/");
   };
@@ -122,26 +122,26 @@ const mapStateToProps = (state, ownProps) => {
   const project = projects ? projects[id] : null;
   return {
     project: project,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    intern: apply => dispatch(intern(apply))
+    intern: apply => dispatch(intern(apply)),
   };
 };
 
 export default compose(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
   ),
   withStyles(profilePageStyle),
   withStyles(workStyle),
   firestoreConnect([
     {
-      collection: "projects"
-    }
+      collection: "projects",
+    },
   ]),
-  withStyles(typographyStyle)
+  withStyles(typographyStyle),
 )(Apply);

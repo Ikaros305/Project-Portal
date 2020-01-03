@@ -57,7 +57,7 @@ class Dashboard extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+
     // this.props.project.jobs.filter(job => job.includes(this.state.filter));
     // console.log(this.props);
 
@@ -101,7 +101,6 @@ class Dashboard extends Component {
     //   ) : (
     //     <div />
     //   );
-    console.log(this.props);
 
     if (!auth.uid) return <Redirect to="/home" />;
     if (projects) {

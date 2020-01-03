@@ -20,24 +20,19 @@ import _ from "lodash";
 // import Domian from "./Domian.jsx";
 import {
   // Pie,
-  Bar
+  Bar,
 } from "react-chartjs-2";
 
 class Charts extends Component {
-  // componentDidMount = (this.props) => {
-  //   console.log(projects);
-  // };
-
   render() {
     const {
       projects,
       auth,
       // notifications,
       // profile,
-      classes
+      classes,
       // filter
     } = this.props;
-    // console.log(projects);
 
     // var i;
     const batchs = _.uniq(
@@ -48,7 +43,7 @@ class Charts extends Component {
           })
           .map(project => {
             return project.year;
-          })
+          }),
     );
     const domains = _.uniq(
       projects &&
@@ -58,7 +53,7 @@ class Charts extends Component {
           })
           .map(project => {
             return project.domain;
-          })
+          }),
     );
 
     const batch1 =
@@ -384,7 +379,7 @@ class Charts extends Component {
     //   ]
     // };
     const data1 = {
-      labels: [...batchs],
+      labels: ["2015-16", "2016-17", "2017-18", "2018-19", "2019-20"],
       datasets: [
         {
           label: ["year"],
@@ -395,7 +390,7 @@ class Charts extends Component {
             "#FF6384",
             "#FF6384",
             "#FF6384",
-            "#FF6384"
+            "#FF6384",
             // "#FFCE56",
             // "#76DC5D",
             // "#D869D3"
@@ -406,7 +401,7 @@ class Charts extends Component {
             "#FF2D59",
             "#FF2D59",
             "#FF2D59",
-            "#FF2D59"
+            "#FF2D59",
             //  "#FFB80B", "#46D721", "#EA00E0"
           ],
           borderWidth: 1.5,
@@ -416,13 +411,13 @@ class Charts extends Component {
             "#FF2D59",
             "#FF2D59",
             "#FF2D59",
-            "#FF2D59"
+            "#FF2D59",
             // "#FFB80B",
             // "#46D721",
             // "#EA00E0"
-          ]
-        }
-      ]
+          ],
+        },
+      ],
     };
     // const data1 = {
     //   labels: [...batchs],
@@ -449,35 +444,35 @@ class Charts extends Component {
     //   ]
     // };
 
-    // labels: [
-    //   "Adversarial Network",
-    //   "Agriculture",
-    //   "Artificial Intelligence",
-    //   "Augmented Reality",
-    //   "Blockchain",
-    //   "Cloud Computing",
-    //   "College Automation",
-    //   "Cryptography",
-    //   "Cyber Security",
-    //   "Data Mining",
-    //   "Deep Learning",
-    //   "Hardware",
-    //   "IOT",
-    //   "Image Processing",
-    //   "Machine Learning",
-    //   "Mobile Computing ",
-    //   "Network Security",
-    //   "Networking",
-    //   "OutHouse",
-    //   "Project Management",
-    //   "Robotics",
-    //   "Smart City",
-    //   "Software Engineering",
-    //   "Web Development",
-    //   "Web Mining"
-    // ],
+    //
     const data2 = {
-      labels: [...domains],
+      labels: [
+        "Adversarial Network",
+        "Agriculture",
+        "Artificial Intelligence",
+        "Augmented Reality",
+        "Blockchain",
+        "Cloud Computing",
+        "College Automation",
+        "Cryptography",
+        "Cyber Security",
+        "Data Mining",
+        "Deep Learning",
+        "Hardware",
+        "IOT",
+        "Image Processing",
+        "Machine Learning",
+        "Mobile Computing ",
+        "Network Security",
+        "Networking",
+        "OutHouse",
+        "Project Management",
+        "Robotics",
+        "Smart City",
+        "Software Engineering",
+        "Web Development",
+        "Web Mining",
+      ],
       datasets: [
         {
           label: ["domain"],
@@ -507,7 +502,7 @@ class Charts extends Component {
             domain22,
             domain23,
             domain24,
-            domain25
+            domain25,
           ],
           backgroundColor: [
             "#5DB9F6",
@@ -534,7 +529,7 @@ class Charts extends Component {
             "#5DB9F6",
             "#5DB9F6",
             "#5DB9F6",
-            "#5DB9F6"
+            "#5DB9F6",
             // "#5DB9F6",
             // "#FFCE56",
             // "#76DC5D",
@@ -565,7 +560,7 @@ class Charts extends Component {
             "#0098FF",
             "#0098FF",
             "#0098FF",
-            "#0098FF"
+            "#0098FF",
             //  "#0098FF", "#FFB80B", "#46D721", "#EA00E0"
           ],
           borderWidth: 1.5,
@@ -594,14 +589,14 @@ class Charts extends Component {
             "#0098FF",
             "#0098FF",
             "#0098FF",
-            "#0098FF"
+            "#0098FF",
             // "#0098FF",
             // "#FFB80B",
             // "#46D721",
             // "#EA00E0"
-          ]
-        }
-      ]
+          ],
+        },
+      ],
     };
     // const data2 = {
     //   labels: [...domain],
@@ -656,8 +651,6 @@ class Charts extends Component {
     //     return project.year;
     //   });
 
-    console.log(domains);
-
     if (!auth.uid) return <Redirect to="/home" />;
 
     return (
@@ -684,15 +677,15 @@ class Charts extends Component {
                       xAxes: [
                         {
                           barPercentage: 50,
-                          barThickness: 50
+                          barThickness: 50,
                           // maxBarThickness: 10,
                           // minBarLength: 2,
                           // gridLines: {
                           //   offsetGridLines: true
                           // }
-                        }
-                      ]
-                    }
+                        },
+                      ],
+                    },
                   }}
                 />{" "}
                 <br /> <br />
@@ -710,15 +703,15 @@ class Charts extends Component {
                       xAxes: [
                         {
                           barPercentage: 20,
-                          barThickness: 20
+                          barThickness: 20,
                           // maxBarThickness: 10,
                           // minBarLength: 2,
                           // gridLines: {
                           //   offsetGridLines: true
                           // }
-                        }
-                      ]
-                    }
+                        },
+                      ],
+                    },
                   }}
                 />
                 <br /> <br />
@@ -741,7 +734,7 @@ const mapStateToProps = state => {
     projects: state.firestore.ordered.projects,
     auth: state.firebase.auth,
     profile: state.firebase.profile,
-    notifications: state.firestore.ordered.notifications
+    notifications: state.firestore.ordered.notifications,
   };
 };
 
@@ -750,6 +743,6 @@ export default compose(
   withStyles(profilePageStyle),
   firestoreConnect([
     { collection: "projects", orderBy: ["year", "asc"] },
-    { collection: "notifications", limit: 3, orderBy: ["time", "desc"] }
-  ])
+    { collection: "notifications", limit: 3, orderBy: ["time", "desc"] },
+  ]),
 )(Charts);

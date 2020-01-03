@@ -55,7 +55,6 @@ class App extends Component {
     }
 
     const go = auth.uid ? "dark" : "transparent";
-    console.log(this.props);
     return (
       <BrowserRouter>
         <div className="App">

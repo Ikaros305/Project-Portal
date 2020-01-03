@@ -32,22 +32,22 @@ class AddAdmin extends Component {
     email: "",
     password: "",
     firstName: "",
-    category: "admin"
+    category: "admin",
   };
   handleChange = e => {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
   handleCheck = e => {
     this.setState({
       selectedEnabled: e.target.value,
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+
     // this.props.adminRole(this.state);
     // this.props.history.push("/");
   };
@@ -67,7 +67,7 @@ class AddAdmin extends Component {
           className={classes.pageHeader}
           style={{
             backgroundSize: "cover",
-            backgroundPosition: "top center"
+            backgroundPosition: "top center",
           }}
         >
           <Parallax small filter image={require("assets/img/bg7.jpg")} />
@@ -85,7 +85,7 @@ class AddAdmin extends Component {
                             id="firstName"
                             onChange={this.handleChange}
                             formControlProps={{
-                              fullWidth: true
+                              fullWidth: true,
                             }}
                             inputProps={{
                               type: "text",
@@ -93,7 +93,7 @@ class AddAdmin extends Component {
                                 <InputAdornment position="end">
                                   <People className={classes.inputIconsColor} />
                                 </InputAdornment>
-                              )
+                              ),
                             }}
                           />
                         </GridItem>
@@ -104,7 +104,7 @@ class AddAdmin extends Component {
                             onChange={this.handleChange}
                             required
                             formControlProps={{
-                              fullWidth: true
+                              fullWidth: true,
                             }}
                             inputProps={{
                               type: "email",
@@ -112,7 +112,7 @@ class AddAdmin extends Component {
                                 <InputAdornment position="end">
                                   <Email className={classes.inputIconsColor} />
                                 </InputAdornment>
-                              )
+                              ),
                             }}
                           />
                         </GridItem>
@@ -123,7 +123,7 @@ class AddAdmin extends Component {
                             onChange={this.handleChange}
                             required
                             formControlProps={{
-                              fullWidth: true
+                              fullWidth: true,
                             }}
                             inputProps={{
                               type: "password",
@@ -131,7 +131,7 @@ class AddAdmin extends Component {
                                 <InputAdornment position="end">
                                   <Lock className={classes.inputIconsColor} />
                                 </InputAdornment>
-                              )
+                              ),
                             }}
                           />
                         </GridItem>
@@ -247,22 +247,22 @@ class AddAdmin extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    adminRole: adminrole => dispatch(adminRole(adminrole))
+    adminRole: adminrole => dispatch(adminRole(adminrole)),
   };
 };
 
 export default compose(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
   ),
   withStyles(workStyle),
   withStyles(basicsStyle),
-  withStyles(landingPageStyle)
+  withStyles(landingPageStyle),
 )(AddAdmin);

@@ -25,11 +25,11 @@ const styles = {
       margin: "0",
       fontSize: "14px",
       marginTop: "0",
-      marginBottom: "0"
+      marginBottom: "0",
     },
     "& a,& a:hover,& a:focus": {
-      color: "#FFFFFF"
-    }
+      color: "#FFFFFF",
+    },
   },
   cardTitleWhite: {
     color: "#FFFFFF",
@@ -43,14 +43,14 @@ const styles = {
       color: "#777",
       fontSize: "65%",
       fontWeight: "400",
-      lineHeight: "1"
-    }
-  }
+      lineHeight: "1",
+    },
+  },
 };
 class Interns extends Component {
   render() {
     const { interns, auth, classes } = this.props;
-    console.log(this.props);
+
     if (!auth.uid) return <Redirect to="/home" />;
 
     return (
@@ -88,7 +88,7 @@ class Interns extends Component {
 const mapStateToProps = state => {
   return {
     interns: state.firestore.ordered.interns,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
   };
 };
 
@@ -96,5 +96,5 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect([{ collection: "interns", orderBy: ["appliedAt", "desc"] }]),
   withStyles(profilePageStyle),
-  withStyles(styles)
+  withStyles(styles),
 )(Interns);

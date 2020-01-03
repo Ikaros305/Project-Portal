@@ -5,8 +5,13 @@ import React, { Component } from "react";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 // import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
+import { makeStyles } from "@material-ui/core/styles";
 import withStyles from "@material-ui/core/styles/withStyles";
-
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelActions from "@material-ui/core/ExpansionPanelActions";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Button from "components/CustomButtons/Button.jsx";
@@ -73,27 +78,33 @@ class Filter extends Component {
       handleCheck,
       handleYear,
       dom,
-      batch
+      batch,
       // checked
     } = this.props;
+    // const useStyles = makeStyles(theme => ({
+    //   Expansion: {
+    //     "&:before": { backgroundColor: "none" },
+    //   },
+    // }));
+    // const classe = useStyles();
     const guide_names = _.uniq(
       projects &&
         projects.map(project => {
           return project.guide_name;
-        })
+        }),
     );
 
     const domains = _.uniq(
       projects &&
         projects.map(project => {
           return project.domain;
-        })
+        }),
     );
     const years = _.uniq(
       projects &&
         projects.map(project => {
           return project.year;
-        })
+        }),
     );
     // const filters = this.state.filter;
     // const abc =
@@ -107,51 +118,76 @@ class Filter extends Component {
         <Card>
           <CardHeader color="success">Filter</CardHeader>
           <CardBody>
-            <div className={classes.title}>
-              <h4>Domains</h4>
-            </div>
-            <div id="checkRadios">
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                  <div
-                    className={
-                      classes.checkboxAndRadio +
-                      " " +
-                      classes.checkboxAndRadioHorizontal
-                    }
-                  >
-                    {domains &&
-                      domains.map(domain => {
-                        return (
-                          <div key={_.uniqueId()}>
-                            <FormControlLabel
-                              control={
-                                <Checkbox
-                                  checked={dom.includes(domain)}
-                                  onClick={handleCheck}
-                                  value={domain}
-                                  id={`dom${domain}`}
-                                  aria-label="A"
-                                  checkedIcon={
-                                    <Check className={classes.checkedIcon} />
+            <ExpansionPanel
+              className="MuiExpansionPanel-rounded"
+              style={{
+                marginBottom: "15px",
+                borderRadius: "15px",
+              }}
+            >
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <div
+                  className={classes.title}
+                  style={{
+                    marginTop: "5px",
+                    marginBottom: "5px",
+                  }}
+                >
+                  <h4>Domains</h4>
+                </div>{" "}
+              </ExpansionPanelSummary>
+              <ExpansionPanelDetails>
+                {" "}
+                <div id="checkRadios">
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={12}>
+                      <div
+                        className={
+                          classes.checkboxAndRadio +
+                          " " +
+                          classes.checkboxAndRadioHorizontal
+                        }
+                      >
+                        {domains &&
+                          domains.map(domain => {
+                            return (
+                              <div key={_.uniqueId()}>
+                                <FormControlLabel
+                                  control={
+                                    <Checkbox
+                                      checked={dom.includes(domain)}
+                                      onClick={handleCheck}
+                                      value={domain}
+                                      id={`dom${domain}`}
+                                      aria-label="A"
+                                      checkedIcon={
+                                        <Check
+                                          className={classes.checkedIcon}
+                                        />
+                                      }
+                                      icon={
+                                        <Check
+                                          className={classes.uncheckedIcon}
+                                        />
+                                      }
+                                      classes={{ checked: classes.checked }}
+                                    />
                                   }
-                                  icon={
-                                    <Check className={classes.uncheckedIcon} />
-                                  }
-                                  classes={{ checked: classes.checked }}
+                                  classes={{
+                                    label: classes.label,
+                                  }}
+                                  label={domain}
                                 />
-                              }
-                              classes={{
-                                label: classes.label
-                              }}
-                              label={domain}
-                            />
-                          </div>
-                        );
-                      })}
-                  </div>
-                </GridItem>{" "}
-                {/* <GridContainer justify="center">
+                              </div>
+                            );
+                          })}
+                      </div>
+                    </GridItem>{" "}
+                    {/* <GridContainer justify="center">
                   <GridItem
                     xs={12}
                     sm={12}
@@ -167,53 +203,80 @@ class Filter extends Component {
                     </Button>
                   </GridItem>
                 </GridContainer> */}
-              </GridContainer>
-            </div>{" "}
-            <div className={classes.title}>
-              <h4>Guide Name</h4>
-            </div>
-            <div id="checkRadios">
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                  <div
-                    className={
-                      classes.checkboxAndRadio +
-                      " " +
-                      classes.checkboxAndRadioHorizontal
-                    }
-                  >
-                    {guide_names &&
-                      guide_names.map(guide_name => {
-                        return (
-                          <div key={_.uniqueId()}>
-                            <FormControlLabel
-                              control={
-                                <Checkbox
-                                  checked={filter.includes(guide_name)}
-                                  onClick={handleChange}
-                                  value={guide_name}
-                                  id={`filter${guide_name}`}
-                                  aria-label="A"
-                                  checkedIcon={
-                                    <Check className={classes.checkedIcon} />
+                  </GridContainer>
+                </div>{" "}
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+
+            <ExpansionPanel
+              className="MuiExpansionPanel-rounded"
+              style={{
+                marginBottom: "15px",
+                borderRadius: "15px",
+              }}
+            >
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel2a-content"
+                id="panel2a-header"
+              >
+                <div
+                  className={classes.title}
+                  style={{
+                    marginTop: "5px",
+                    marginBottom: "5px",
+                  }}
+                >
+                  <h4>Guide Name</h4>
+                </div>
+              </ExpansionPanelSummary>{" "}
+              <ExpansionPanelDetails>
+                <div id="checkRadios">
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={12}>
+                      <div
+                        className={
+                          classes.checkboxAndRadio +
+                          " " +
+                          classes.checkboxAndRadioHorizontal
+                        }
+                      >
+                        {guide_names &&
+                          guide_names.map(guide_name => {
+                            return (
+                              <div key={_.uniqueId()}>
+                                <FormControlLabel
+                                  control={
+                                    <Checkbox
+                                      checked={filter.includes(guide_name)}
+                                      onClick={handleChange}
+                                      value={guide_name}
+                                      id={`filter${guide_name}`}
+                                      aria-label="A"
+                                      checkedIcon={
+                                        <Check
+                                          className={classes.checkedIcon}
+                                        />
+                                      }
+                                      icon={
+                                        <Check
+                                          className={classes.uncheckedIcon}
+                                        />
+                                      }
+                                      classes={{ checked: classes.checked }}
+                                    />
                                   }
-                                  icon={
-                                    <Check className={classes.uncheckedIcon} />
-                                  }
-                                  classes={{ checked: classes.checked }}
+                                  classes={{
+                                    label: classes.label,
+                                  }}
+                                  label={guide_name}
                                 />
-                              }
-                              classes={{
-                                label: classes.label
-                              }}
-                              label={guide_name}
-                            />
-                          </div>
-                        );
-                      })}
-                  </div>
-                </GridItem>{" "}
-                {/* <GridContainer justify="center">
+                              </div>
+                            );
+                          })}
+                      </div>
+                    </GridItem>{" "}
+                    {/* <GridContainer justify="center">
                   <GridItem
                     xs={12}
                     sm={12}
@@ -229,70 +292,93 @@ class Filter extends Component {
                     </Button>
                   </GridItem>
                 </GridContainer> */}
-              </GridContainer>
-            </div>
-            <div className={classes.title}>
-              <h4>Year</h4>
-            </div>
-            <div id="checkRadios">
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={12}>
-                  <div
-                    className={
-                      classes.checkboxAndRadio +
-                      " " +
-                      classes.checkboxAndRadioHorizontal
-                    }
-                  >
-                    {years &&
-                      years.map(year => {
-                        return (
-                          <div key={_.uniqueId()}>
-                            <FormControlLabel
-                              control={
-                                <Checkbox
-                                  checked={batch.includes(year)}
-                                  onClick={handleYear}
-                                  value={year}
-                                  id={`batch${year}`}
-                                  aria-label="A"
-                                  checkedIcon={
-                                    <Check className={classes.checkedIcon} />
+                  </GridContainer>
+                </div>{" "}
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <ExpansionPanel
+              // className="MuiExpansionPanel-rounded"
+              style={{
+                marginBottom: "15px",
+                borderRadius: "15px",
+              }}
+            >
+              <ExpansionPanelSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel3a-content"
+                id="panel3a-header"
+              >
+                <div
+                  className={classes.title}
+                  style={{
+                    marginTop: "5px",
+                    marginBottom: "5px",
+                  }}
+                >
+                  <h4>Year</h4>
+                </div>{" "}
+              </ExpansionPanelSummary>{" "}
+              <ExpansionPanelDetails>
+                <div id="checkRadios">
+                  <GridContainer>
+                    <GridItem xs={12} sm={12} md={12}>
+                      <div
+                        className={
+                          classes.checkboxAndRadio +
+                          " " +
+                          classes.checkboxAndRadioHorizontal
+                        }
+                      >
+                        {years &&
+                          years.map(year => {
+                            return (
+                              <div key={_.uniqueId()}>
+                                <FormControlLabel
+                                  control={
+                                    <Checkbox
+                                      checked={batch.includes(year)}
+                                      onClick={handleYear}
+                                      value={year}
+                                      id={`batch${year}`}
+                                      aria-label="A"
+                                      checkedIcon={
+                                        <Check
+                                          className={classes.checkedIcon}
+                                        />
+                                      }
+                                      icon={
+                                        <Check
+                                          className={classes.uncheckedIcon}
+                                        />
+                                      }
+                                      classes={{ checked: classes.checked }}
+                                    />
                                   }
-                                  icon={
-                                    <Check className={classes.uncheckedIcon} />
-                                  }
-                                  classes={{ checked: classes.checked }}
+                                  classes={{
+                                    label: classes.label,
+                                  }}
+                                  label={year}
                                 />
-                              }
-                              classes={{
-                                label: classes.label
-                              }}
-                              label={year}
-                            />
-                          </div>
-                        );
-                      })}
-                  </div>
-                </GridItem>{" "}
-                <GridContainer justify="center">
-                  <GridItem
-                    xs={12}
-                    sm={12}
-                    md={4}
-                    className={classes.textCenter}
-                  >
-                    {/* <Button color="danger" onClick={handleSubmit}>
+                              </div>
+                            );
+                          })}
+                      </div>
+                    </GridItem>{" "}
+                  </GridContainer>{" "}
+                </div>{" "}
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
+            <GridContainer justify="center">
+              <GridItem xs={12} sm={12} md={4} className={classes.textCenter}>
+                {/* <Button color="danger" onClick={handleSubmit}>
                       Save
                     </Button> */}
 
-                    <Button color="danger" onClick={handleClear}>
-                      Clear
-                    </Button>
-                  </GridItem>
-                </GridContainer>
-              </GridContainer>
-            </div>
+                <Button color="danger" onClick={handleClear}>
+                  Clear
+                </Button>
+              </GridItem>
+            </GridContainer>
           </CardBody>
         </Card>
       </div>

@@ -32,11 +32,11 @@ import basicsStyle from "assets/jss/material-kit-react/views/componentsSections/
 class Login extends Component {
   state = {
     email: "",
-    password: ""
+    password: "",
   };
   handleChange = e => {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
   handleClickShowPassword = () => {
@@ -44,7 +44,6 @@ class Login extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
 
     // this.props.signIn(this.state);
   };
@@ -58,7 +57,7 @@ class Login extends Component {
         style={{
           backgroundImage: "url(" + image + ")",
           backgroundSize: "cover",
-          backgroundPosition: "top center"
+          backgroundPosition: "top center",
         }}
       >
         <div className={classes.container}>
@@ -87,7 +86,7 @@ class Login extends Component {
                               labelText="Email..."
                               id="email"
                               formControlProps={{
-                                fullWidth: true
+                                fullWidth: true,
                               }}
                               inputProps={{
                                 type: "email",
@@ -97,7 +96,7 @@ class Login extends Component {
                                       className={classes.inputIconsColor}
                                     />
                                   </InputAdornment>
-                                )
+                                ),
                               }}
                               onChange={this.handleChange}
                               required="true"
@@ -132,7 +131,7 @@ class Login extends Component {
                       paddingLeft: "40%",
                       paddingRight: "35%",
                       marginBottom: "10px",
-                      position: "relative"
+                      position: "relative",
                     }}
                   >
                     <Danger>{authError ? <p>{authError}</p> : null}</Danger>
@@ -151,21 +150,21 @@ class Login extends Component {
 const mapStateToProps = state => {
   return {
     authError: state.auth.authError,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    signIn: creds => dispatch(signIn(creds))
+    signIn: creds => dispatch(signIn(creds)),
   };
 };
 
 export default compose(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
   ),
   withStyles(loginPageStyle),
-  withStyles(basicsStyle)
+  withStyles(basicsStyle),
 )(Login);

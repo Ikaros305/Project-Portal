@@ -41,7 +41,7 @@ class SignUp extends Component {
       password: "",
       firstName: "",
       // category: "",
-      cardAnimaton: "cardHidden"
+      cardAnimaton: "cardHidden",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
@@ -54,24 +54,24 @@ class SignUp extends Component {
       function() {
         this.setState({ cardAnimaton: "" });
       }.bind(this),
-      700
+      700,
     );
   }
 
   handleChange = e => {
     this.setState({
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
   handleCheck = e => {
     this.setState({
       selectedEnabled: e.target.value,
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+
     this.props.signUp(this.state);
   };
 
@@ -85,7 +85,7 @@ class SignUp extends Component {
         style={{
           backgroundImage: "url(" + image + ")",
           backgroundSize: "cover",
-          backgroundPosition: "top center"
+          backgroundPosition: "top center",
         }}
       >
         <div className={classes.container}>
@@ -102,7 +102,7 @@ class SignUp extends Component {
                       id="firstName"
                       onChange={this.handleChange}
                       formControlProps={{
-                        fullWidth: true
+                        fullWidth: true,
                       }}
                       inputProps={{
                         type: "text",
@@ -110,7 +110,7 @@ class SignUp extends Component {
                           <InputAdornment position="end">
                             <People className={classes.inputIconsColor} />
                           </InputAdornment>
-                        )
+                        ),
                       }}
                     />
                     <CustomInput
@@ -119,7 +119,7 @@ class SignUp extends Component {
                       onChange={this.handleChange}
                       required
                       formControlProps={{
-                        fullWidth: true
+                        fullWidth: true,
                       }}
                       inputProps={{
                         type: "email",
@@ -127,7 +127,7 @@ class SignUp extends Component {
                           <InputAdornment position="end">
                             <Email className={classes.inputIconsColor} />
                           </InputAdornment>
-                        )
+                        ),
                       }}
                     />
                     <CustomInput
@@ -136,7 +136,7 @@ class SignUp extends Component {
                       onChange={this.handleChange}
                       required
                       formControlProps={{
-                        fullWidth: true
+                        fullWidth: true,
                       }}
                       inputProps={{
                         type: "password",
@@ -144,7 +144,7 @@ class SignUp extends Component {
                           <InputAdornment position="end">
                             <Lock className={classes.inputIconsColor} />
                           </InputAdornment>
-                        )
+                        ),
                       }}
                     />
                     {/* 
@@ -241,7 +241,7 @@ class SignUp extends Component {
                       paddingLeft: "15%",
                       paddingRight: "15%",
                       marginBottom: "10px",
-                      position: "relative"
+                      position: "relative",
                     }}
                   >
                     <Danger>{authError ? <p>{authError}</p> : null}</Danger>
@@ -260,22 +260,22 @@ class SignUp extends Component {
 const mapStateToProps = state => {
   return {
     auth: state.firebase.auth,
-    authError: state.auth.authError
+    authError: state.auth.authError,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    signUp: creds => dispatch(signUp(creds))
+    signUp: creds => dispatch(signUp(creds)),
   };
 };
 
 export default compose(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
   ),
   withStyles(loginPageStyle),
   withStyles(basicsStyle),
-  withStyles(typographyStyle)
+  withStyles(typographyStyle),
 )(SignUp);
