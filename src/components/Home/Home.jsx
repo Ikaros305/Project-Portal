@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { Redirect } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 
@@ -14,6 +14,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 
+import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle.jsx";
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 import image from "assets/img/bg16.jpg";
 // Sections for this page
@@ -23,7 +24,7 @@ class Home extends Component {
     super(props);
     // we use this to make the card to appear after the page has been rendered
     this.state = {
-      cardAnimaton: "cardHidden"
+      cardAnimaton: "cardHidden",
     };
   }
   componentDidMount() {
@@ -32,7 +33,7 @@ class Home extends Component {
       function() {
         this.setState({ cardAnimaton: "" });
       }.bind(this),
-      700
+      700,
     );
   }
   render() {
@@ -46,7 +47,7 @@ class Home extends Component {
           style={{
             backgroundImage: "url(" + image + ")",
             backgroundSize: "cover",
-            backgroundPosition: "top center"
+            backgroundPosition: "top center",
           }}
         >
           <div className={classes.container}>
@@ -60,7 +61,7 @@ class Home extends Component {
                   first impression.
                 </h4>
                 <br />
-
+                <Link />
                 <Button
                   color="danger"
                   size="lg"
@@ -84,7 +85,7 @@ class Home extends Component {
 const mapStateToProps = state => {
   return {
     authError: state.auth.authError,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
   };
 };
 
@@ -92,5 +93,6 @@ const mapStateToProps = state => {
 //export default connect(mapStateToProps)(landingPageStyle)(Home);
 export default compose(
   connect(mapStateToProps),
-  withStyles(loginPageStyle)
+  withStyles(loginPageStyle),
+  withStyles(headerLinksStyle),
 )(Home);

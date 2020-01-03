@@ -64,7 +64,7 @@ class SignIn extends Component {
           <GridContainer justify="flex-end">
             <GridItem xs={12} sm={12} md={4}>
               <Card className={classes[this.state.cardAnimaton]}>
-                <form className={classes.form}>
+                <form className={classes.form} onSubmit={this.handleSubmit}>
                   <CardHeader color="primary" className={classes.cardHeader}>
                     <h4>Login</h4>
                   </CardHeader>
@@ -72,6 +72,7 @@ class SignIn extends Component {
                     <CustomInput
                       labelText="Email..."
                       id="email"
+                      required
                       formControlProps={{
                         fullWidth: true,
                       }}
@@ -115,12 +116,7 @@ class SignIn extends Component {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    <Button
-                      simple
-                      color="primary"
-                      size="lg"
-                      onClick={this.handleSubmit}
-                    >
+                    <Button simple type="submit" color="primary" size="lg">
                       Login
                     </Button>
                   </CardFooter>

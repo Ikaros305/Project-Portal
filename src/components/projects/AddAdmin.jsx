@@ -77,12 +77,13 @@ class AddAdmin extends Component {
                 <GridContainer justify="center">
                   <GridItem cs={12} sm={12} md={8}>
                     <h2 className={classes.title}>Add Admin</h2>
-                    <form>
+                    <form onClick={this.handleSubmit}>
                       <GridContainer>
                         <GridItem xs={12} sm={12} md={12}>
                           <CustomInput
                             labelText="First Name..."
                             id="firstName"
+                            required
                             onChange={this.handleChange}
                             formControlProps={{
                               fullWidth: true,
@@ -226,7 +227,7 @@ class AddAdmin extends Component {
                             md={4}
                             className={classes.textCenter}
                           >
-                            <Button color="primary" onClick={this.handleSubmit}>
+                            <Button color="primary" type="submit">
                               Add Admin
                             </Button>
                           </GridItem>
