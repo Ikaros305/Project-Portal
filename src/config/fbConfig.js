@@ -1,7 +1,6 @@
-import firebase from "firebase/app";
+import firebase from "firebase";
 import "firebase/firestore";
 import "firebase/auth";
-
 // Replace this with your own config details
 const config = {
   apiKey: "AIzaSyAh5jU2cn5WgBx0OR4Vj5nlaQt1-vnpPNE",
@@ -10,7 +9,7 @@ const config = {
   projectId: "projectlist-8a976",
   storageBucket: "",
   messagingSenderId: "656601513677",
-  appId: "1:656601513677:web:21ac939728c0dbf006f384"
+  appId: "1:656601513677:web:21ac939728c0dbf006f384",
 };
 const fbConfig = firebase.initializeApp(config);
 
